@@ -1,34 +1,15 @@
-server:
-  port: 8001
-
-#  mybatis配置
-mybatis:
-  type-aliases-package: com.happy.springcloud.pojo
-  config-location: classpath:mybatis/mybatis-config.xml
-  mapper-locations: classpath:mybatis/mapper/*.xml
-
-
-#  spring配置
 spring:
+  profiles:
+    active: dev
+
+---
+spring:
+  profiles: dev
+  applicaiton:
+    name: springcloud-config-dev
+
+---
+spring:
+  profiles: test
   application:
-    name: springcloud-provider-dept
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mybatis?useSSL=false&useUnicode=true&characterEncoding=utf-8
-    username: root
-    password: 1987518g
-
-#  eureka的配置，服务注册到哪里
-eureka:
-  client:
-    register-with-eureka: true #表示是否向eure卡注册中心注册自己.这个需要
-    service-url:
-      defaultZone: http://eureka7001:7001/eureka/,http://eureka7002:7002/eureka/,http://eureka7003:7003/eureka/
-  instance: #      修改默认eura卡上注册的默认描述信息
-    intance-id: springcloud-provider-dept8001
-
-#info 设置
-info:
-  app.name: happy-springcloud
-  company.name: blog.happy.com
+    name: springcloud-config-test
